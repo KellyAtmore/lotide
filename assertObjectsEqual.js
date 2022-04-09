@@ -8,7 +8,6 @@ const eqObjects = function(object1, object2) {
   if (key1.length !== key2.length) {
     return false;
   }
-
   for (const key of key1) {
     //console.log("key:", key, "valueA:", object1[key], "valueB:", object2[key]);
     if (Array.isArray(object1[key])) {
@@ -44,19 +43,30 @@ const eqArrays = function(array1, array2) {
   return true;
 };
 
-// FUNCTION IMPLEMENTATION
 const assertObjectsEqual = function(object1, object2) {
-  // Implement me!
-  if (eqArrays(object1, object2)) {
-    console.log(`🙂🙂🙂Assertion Passed: [${object1}] === [${object2}]`);
+  const inspect = require('util').inspect; // <= add this line
+
+  if (eqObjects(object1, object2)) {
+    console.log(`🙂🙂🙂Assertion Passed: [${inspect(object1)}] === [${inspect(object2)}]`);
   } else {
-    console.log(`🛑🛑🛑 Assertion Failed: [${object1}] !== [${object2}]`);
+    console.log(`🛑🛑🛑 Assertion Failed: [${inspect(object1)}] !== [${inspect(object2)}]`);
   }
 };
 
+
+
+// -- tests obs w primitives --
+const ab = { a: "1", b: "2" };
+const ba = { b: "2", a: "1" };
+assertObjectsEqual(ab, ba); // => true
+
+const abc = { a: "1", b: "2", c: "3" };
+assertObjectsEqual(ab, abc); // => false
+
+// -- tests objs w arrays --
 const cd = { c: "1", d: ["2", 3] };
 const dc = { d: ["2", 3], c: "1" };
-assertObjectsEqual(eqObjects(cd, dc), true); // => true
+assertObjectsEqual(cd, dc); // => true
 
 const cd2 = { c: "1", d: ["2", 3, 4] };
-assertObjectsEqual(eqObjects(cd, cd2), false); // => false
+assertObjectsEqual(cd, cd2); // => false
