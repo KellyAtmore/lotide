@@ -32,9 +32,15 @@ const letterPositions = function(sentence) {
   let arr = sentence.toLowerCase().replace(/\s/g, '').split(' ');
   
   for (let i = 0; i < sentence.length; i++) {
+<<<<<<< HEAD
     if (sentence[i] !== " ") {
       if (results[sentence[i]]) {
         results[sentence[i]].push(i);
+=======
+    if (sentence[i] !== " ") { 
+      if (results[sentence[i]]) { 
+        results[sentence[i]].push(i); 
+>>>>>>> 23ca2fb3c8be4c3c0a28d30d990007f938717fc9
       } else {
         results[sentence[i]] = [i];
       }
