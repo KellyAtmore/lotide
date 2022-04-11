@@ -10,7 +10,7 @@ const countletters = function(str) {
 
   let obj = {};
   let arr = str.toLowerCase().replace(/\s/g, '').split('');
-  console.log(arr);
+  //console.log(arr);
   
   for (const letter of arr) {
     if (obj[letter]) {
